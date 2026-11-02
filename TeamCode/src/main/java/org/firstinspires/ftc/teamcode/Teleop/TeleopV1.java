@@ -10,12 +10,18 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp
 public class TeleopV1 extends LinearOpMode {
+    DcMotorEx fL, bL, fR, bR;
+
+    DcMotorEx intake, transfer, outtake;
+    public static double OuttakeSpeed = 2700;
+    //Change TPS Based On Tests
+    double intakeSpeed = 1;
+    double reverse = -1;
+    double transferSpeed = -0.5;
+    double rtransferSpeed = 0.5;
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors as DcMotorEx
-        DcMotorEx fL, bL, fR, bR;
-
-        DcMotorEx intake, transfer, outtake;
 
         // Fetch as DcMotorEx from hardwareMap
         fL = hardwareMap.get(DcMotorEx.class, "fL");
@@ -44,11 +50,7 @@ public class TeleopV1 extends LinearOpMode {
         fR.setDirection(DcMotorSimple.Direction.REVERSE);
         bR.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        double intakeSpeed = 1;
-        double reverse = -1;
-        double transferSpeed = -0.5;
-        double outtakeSpeed = 1;
-        double ntransferSpeed = 0.5;
+
 
         //Change any incorrect values here based off testing
 
@@ -76,10 +78,10 @@ public class TeleopV1 extends LinearOpMode {
 
             if (gamepad1.right_trigger > 0.3) {
                 transfer.setPower(transferSpeed);
-                outtake.setPower(outtakeSpeed);
+                outtake.setPower(OuttakeSpeed);
             } else {
-                transfer.setPower(ntransferSpeed);
-                outtake.setPower(outtakeSpeed);
+                transfer.setPower(rtransferSpeed);
+                outtake.setPower(OuttakeSpeed);
             }
 
             double y = -gamepad1.left_stick_y;
