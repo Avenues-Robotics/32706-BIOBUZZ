@@ -19,6 +19,7 @@ public class TeleopV1 extends LinearOpMode {
     double reverse = -1;
     double transferSpeed = -0.5;
     double rtransferSpeed = 0.5;
+    //reverse transfer
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors as DcMotorEx
