@@ -1,17 +1,21 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 //echo 'export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools' >> ~/.zshrc
 //adb connect 192.168.43.1:5555
 //adb version
 @TeleOp
+@Config
 public class AllMechanismsTest extends LinearOpMode {
 
     private DcMotorEx intake, transfer, outtake;
-
+    public static double outtakevelocity = 1215;
     //reverse if wrong direction TPS
     @Override
     public void runOpMode() {
@@ -22,6 +26,7 @@ public class AllMechanismsTest extends LinearOpMode {
         intake.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         transfer.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         outtake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        outtake.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
 
@@ -40,7 +45,7 @@ public class AllMechanismsTest extends LinearOpMode {
               } else{
                   transfer.setPower(-1);
               }
-              outtake.setVelocity(-1400);
+              outtake.setVelocity(outtakevelocity);
 
         }
     }
